@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Encantadas</title>
+    <style>
+        /* Reset and Global Styles */
+        *,
+        html,
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            animation: fadeIn 1.2s ease-in-out;
+            line-height: 1.6;
+        }
+
+        /* Variables */
+        :root {
+            --primary-color: #ef7c8e;
+            --secondary-color: #fae8e0;
+            --accent-color: #b6e2d3;
+            --text-color: #333333;
+            --transition-speed: 0.3s;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header */
+        header {
+            position: absolute;
+            width: 100%;
+            background-color: rgba(239, 124, 142, 0.95);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            transition: all var(--transition-speed);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            height: 12vh;
+        }
+
+        header.scrolled {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            padding: 10px 5%;
+        }
+
+        .logo {
+            font-size: 28px;
+            color: var(--secondary-color);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            padding: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            transition: all var(--transition-speed);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffffff;
+            transition: width var(--transition-speed);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        .show .bar:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .show .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .show .bar:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(180deg,
+                    rgba(239, 124, 142, 0.8),
+                    rgba(250, 232, 224, 0.8)),
+                url('../images/campo-florido.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* color: #FFFFFF; */
+            padding: 0 20px;
+        }
+
+        #hero button,
+        #galeria button {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            margin: 20px 0;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #hero button:hover,
+        #galeria button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Content Sections */
+        #sobre,
+        #galeria,
+        #cuidados {
+            padding: 80px 5%;
+            min-height: 70vh;
+        }
+
+        #sobre {
+            background: linear-gradient(180deg, var(--secondary-color), var(--accent-color));
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 40px;
+        }
+
+        #sobre .texto {
+            max-width: 600px;
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        #galeria {
+            background: linear-gradient(180deg, var(--accent-color), #d8a7b1);
+            /* color: var(--primary-color); */
+        }
+
+        #galeria div {
+            font-size: 80px;
+        }
+
+        #galeria .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-items: center;
+        }
+
+        #cuidados {
+            background: linear-gradient(180deg, #d8a7b1, var(--secondary-color));
+            /* color: var(--primary-color); */
+
+        }
+
+        #cuidados .cuidados-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 50px;
+            padding: 50px;
+            justify-items: center;
+        }
+
+        #cuidados .cuidados-grid .coluna {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        #cuidados .cuidados-grid .coluna:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            color: #FFFFFF;
+            text-align: center;
+            padding: 30px 20px;
+            font-weight: 500;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 24px;
+            }
+
+            .hamburger {
+                display: block;
+                cursor: pointer;
+                z-index: 1001;
+                color: green;
+            }
+
+            nav ul {
+                gap: 15px;
+                flex-direction: column;
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 100%;
+                background: var(--primary-color);
+                padding: 20px;
+                transition: 0.3s;
+                z-index: 1000;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            #sobre {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px;
+            }
+
+            #hero {
+                padding: 0 10px;
+            }
+
+            #galeria .galeria-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                justify-items: center;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <svg width="100" height="100" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="10" fill="yellow" />
+            <ellipse cx="50" cy="25" rx="20" ry="10" fill="#fff" />
+            <ellipse cx="75" cy="50" rx="10" ry="20" fill="#fff" />
+            <ellipse cx="50" cy="75" rx="20" ry="10" fill="#fff" />
+            <ellipse cx="25" cy="50" rx="10" ry="20" fill="#fff" />
+        </svg>
+        <div class="logo">
+
+            <!-- Flores -->
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+                <li><a href="#cuidados">Importância</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <div style="font-size:200px">🌺</div>
+
+            <h1>A Beleza das Flores</h1>
+            <p>Explore a delicadeza e o encanto das flores.</p>
+            <a href="#sobre">
+                <button>Descubra Mais</button>
+            </a>
+        </div>
+    </section>
+
+    <section id="sobre">
+        <div class="texto">
+            <h2>Sobre as Flores</h2>
+            <span>A Importância das Flores</span> As flores são essenciais para a natureza e para os seres humanos em
+            diversos aspectos:</p>
+            <br>
+            <p><strong>Polinização: </strong> Atraem polinizadores (abelhas, borboletas, etc.), garantindo a reprodução
+                das plantas.</p>
+            <p><strong>Biodiversidade:</strong> Suportam diversas espécies, mantendo a saúde do ecossistema.</p>
+            <p><strong>Alimento:</strong> São fontes primárias de alimento para muitos organismos.</p>
+            <p><strong>Beleza e Bem-Estar:</strong> Melhoram o ambiente, reduzem o estresse e promovem o bem-estar
+                mental.</p>
+            <p><strong>Usos Medicinais e Culturais</strong>: Possuem propriedades terapêuticas e são importantes em
+                muitas culturas.</p>
+            <br>
+            <p>Flores como rosas, girassóis, tulipas, orquídeas e lavandas são apenas algumas das variedades que
+                ilustram sua diversidade e importância.</p>
+        </div>
+
+        <div class="imagem">
+            <!-- <img src="images/buque.jpg" alt="Buquê de flores"> -->
+            <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(100,100)">
+                    <g transform="rotate(30)">
+                        <path
+                            d="M 0,-30 C 20,-55 50,-55 70,-30 C 90,-5 90,25 70,50 C 50,75 20,75 0,50 C -20,25 -20,-5 0,-30"
+                            fill="#F44336" />
+                        <path
+                            d="M 0,-30 C 10,-45 30,-45 40,-30 C 50,-15 50,5 40,20 C 30,35 10,35 0,20 C -10,5 -10,-15 0,-30"
+                            fill="#D32F2F" />
+                    </g>
+                    <g transform="rotate(150)">
+                        <path
+                            d="M 0,-30 C 20,-55 50,-55 70,-30 C 90,-5 90,25 70,50 C 50,75 20,75 0,50 C -20,25 -20,-5 0,-30"
+                            fill="#F44336" />
+                        <path
+                            d="M 0,-30 C 10,-45 30,-45 40,-30 C 50,-15 50,5 40,20 C 30,35 10,35 0,20 C -10,5 -10,-15 0,-30"
+                            fill="#D32F2F" />
+                    </g>
+                    <g transform="rotate(270)">
+                        <path
+                            d="M 0,-30 C 20,-55 50,-55 70,-30 C 90,-5 90,25 70,50 C 50,75 20,75 0,50 C -20,25 -20,-5 0,-30"
+                            fill="#F44336" />
+                        <path
+                            d="M 0,-30 C 10,-45 30,-45 40,-30 C 50,-15 50,5 40,20 C 30,35 10,35 0,20 C -10,5 -10,-15 0,-30"
+                            fill="#D32F2F" />
+                    </g>
+                    <path d="M 0,0 L 0,60" stroke="#228B22" stroke-width="3" />
+                    <path d="M 10,50 L 20,70" stroke="#228B22" stroke-width="3" />
+                    <path d="M -10,40 L -20,60" stroke="#228B22" stroke-width="3" />
+                </g>
+            </svg>
+        </div>
+
+
+    </section>
+
+    <section id="galeria">
+        <h2>Galeria</h2>
+        <div class="galeria-grid">
+            <div>🌸</div> 
+            
+            <div>🌼</div>
+            
+            <div>🌺</div>
+
+            <div>🌻</div>
+
+            <div>🌹</div>
+
+            <div>🌷</div>
+
+            <div>🌱</div>
+
+            <div>🌾</div>
+            
+            <div>🌿</div>
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+            
+            <!-- Imagens de flores com legendas -->
+            <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="40" fill="red" />
+                <circle cx="30" cy="30" r="10" fill="yellow" />
+                <circle cx="70" cy="30" r="10" fill="yellow" />
+                <circle cx="50" cy="70" r="10" fill="yellow" />
+            </svg>
+
+            <!-- Flor 1 -->
+            <svg width="100" height="100" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="10" fill="yellow" />
+                <circle cx="50" cy="35" r="15" fill="red" />
+                <circle cx="65" cy="50" r="15" fill="red" />
+                <circle cx="50" cy="65" r="15" fill="red" />
+                <circle cx="35" cy="50" r="15" fill="red" />
+            </svg>
+
+            <!-- Flor 2 -->
+            <svg width="100" height="100" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="10" fill="yellow" />
+                <ellipse cx="50" cy="25" rx="20" ry="10" fill="blue" />
+                <ellipse cx="75" cy="50" rx="10" ry="20" fill="blue" />
+                <ellipse cx="50" cy="75" rx="20" ry="10" fill="blue" />
+                <ellipse cx="25" cy="50" rx="10" ry="20" fill="blue" />
+            </svg>
+            
+            <!-- Flor 4 -->
+            <svg width="100" height="100" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="10" fill="yellow" />
+                <path d="M50 20 Q60 35 75 40 Q60 50 75 60 Q60 65 50 80 Q40 65 25 60 Q40 50 25 40 Q40 35 50 20"
+                    fill="pink" />
+            </svg>
+
+            <!-- Flor 5 -->
+            <svg width="100" height="100" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="10" fill="yellow" />
+                <line x1="50" y1="15" x2="50" y2="85" stroke="orange" stroke-width="5" />
+                <line x1="15" y1="50" x2="85" y2="50" stroke="orange" stroke-width="5" />
+                <line x1="25" y1="25" x2="75" y2="75" stroke="orange" stroke-width="5" />
+                <line x1="75" y1="25" x2="25" y2="75" stroke="orange" stroke-width="5" />
+            </svg>
+
+        </div>
+        <p>Segundo a IA Copilot, no Brasil, estima-se que existam cerca de 33 mil espécies de plantas com flores catalogadas.</p> 
+        <p>O país é conhecido por sua rica biodiversidade e abriga uma grande variedade de espécies, muitas das quais são endêmicas, ou seja, encontradas exclusivamente no Brasil.</p>       
+
+    </section>
+
+    <section id="cuidados">
+        <h2>Importância Flores</h2>
+        <div class="cuidados-grid">
+            <div class="coluna">
+                <h3>Polinização</h3>
+                <p>Atraem polinizadores, garantindo a reprodução das plantas.</p>
+            </div>
+            <div class="coluna">
+                <h3>Biodiversidade</h3>
+                <p>Mantêm a saúde do ecossistema ao suportar diversas espécies.</p>
+            </div>
+            <div class="coluna">
+                <h3>Alimento</h3>
+                <p>Fonte primária de alimento para muitos organismos.</p>
+            </div>
+            <div class="coluna">
+                <h3>Beleza e Bem-Estar</h3>
+                <p>Melhoram o ambiente e promovem o bem-estar mental.</p>
+            </div>
+            <div class="coluna">
+                <h3>Usos Medicinais e Culturais</h3>
+                <p>Possuem propriedades terapêuticas e são culturalmente significativas.</p>
+            </div>
+        
+        </div>
+
+        <p>Flores como rosas, girassóis, tulipas, orquídeas e lavandas ilustram a diversidade e importância das flores.
+        🌸🌼🌺🌻
+        </p>
+    </section>
+
+    <footer id="contato">
+        <div class="footer-content">
+            <p>&copy; 2023 Flores Encantadas</p>
+            <!-- Ícones de redes sociais -->
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('nav ul');
+            menu.classList.toggle('active');
+
+            // Add click event listener to close menu when clicking anywhere
+            document.addEventListener('click', function closeMenu(e) {
+                if (!menu.contains(e.target) && !e.target.matches('.hamburger, .hamburger *')) {
+                    menu.classList.remove('active');
+                    document.removeEventListener('click', closeMenu);
+                }
+            });
+
+            menu.addEventListener('click', function (e) {
+                if (e.target.matches('a')) {
+                    menu.classList.remove('active');
+                }
+            });
+        }    </script>
+</body>
+
+</html>
