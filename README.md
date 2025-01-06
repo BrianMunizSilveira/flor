@@ -1,14 +1,11 @@
 # Flores Encantadas
 
 ## Descrição
-Flores Encantadas é um projeto web que explora a beleza e a importância das flores. O site apresenta seções sobre as flores, incluindo informações sobre polinização, biodiversidade, e uma galeria de imagens.
+Flores Encantadas é um projeto que celebra a beleza e a importância das flores. Através de uma interface interativa, os usuários podem explorar informações sobre diferentes tipos de flores, sua importância para o ecossistema e muito mais.
 
-## Tecnologias Usadas
-- HTML
-- CSS
-- JavaScript
+## Instalação
+Para instalar e executar o projeto, siga os passos abaixo:
 
-## Instruções de Instalação
 1. Clone o repositório:
    ```bash
    git clone https://github.com/seu_usuario/flores_encantadas.git
@@ -17,12 +14,23 @@ Flores Encantadas é um projeto web que explora a beleza e a importância das fl
    ```bash
    cd flores_encantadas
    ```
+3. Abra o arquivo `index.html` em um navegador de sua escolha.
 
 ## Uso
-- Abra o arquivo `index.html` em um navegador para visualizar o projeto.
+- **Home**: A página inicial apresenta uma visão geral do projeto.
+- **Sobre**: Informações sobre a importância das flores.
+- **Galeria**: Uma coleção de imagens e ícones de flores.
+- **Importância**: Detalhes sobre o papel das flores no ecossistema.
 
-## Contribuindo
-Contribuições são bem-vindas! Sinta-se à vontade para abrir um problema ou enviar um pull request.
+## Ícones
+- 🌺 - Flor
+- 🌼 - Flor Amarela
+- 🌻 - Girassol
+- 🌹 - Rosa
+- 🌷 - Tulipa
+- 🌱 - Broto
+- 🌾 - Grama
+- 🌿 - Folha
 
 ## Licença
 Este projeto está licenciado sob a MIT License.
