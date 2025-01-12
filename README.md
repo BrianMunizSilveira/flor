@@ -31,6 +31,11 @@ Para instalar e executar o projeto, siga os passos abaixo:
 - 🌱 - Broto
 - 🌾 - Grama
 - 🌿 - Folha
+- 🌷 - Lírio  
+- 🌼 - Margarida 
+- 🌺 - Orquídea  
+- 🌱 - Dente-de-leão 
+- 🏵️ - Flor do Campo 
 
 ## Licença
 Este projeto está licenciado sob a MIT License.
